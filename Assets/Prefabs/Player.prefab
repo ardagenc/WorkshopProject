@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1988013578125655810}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.077, y: -0.145, z: 0}
+  m_LocalPosition: {x: 0.02, y: -0.1665, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,9 +46,10 @@ GameObject:
   - component: {fileID: 374596334712454517}
   - component: {fileID: 2181748927089079089}
   - component: {fileID: 7251913506597556974}
+  - component: {fileID: 2959738912149020647}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +117,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4236677631525818213, guid: c03aa8a8df5ee24478b4045492d20aa5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -144,7 +145,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b6c789c983b6e7b4689543b2e877f022, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -153,7 +154,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &3047567018993925431
 CapsuleCollider2D:
@@ -189,8 +190,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.07502821, y: -0.026587691}
-  m_Size: {x: 0.19341546, y: 0.2511379}
+  m_Offset: {x: 0.021910042, y: -0.061259657}
+  m_Size: {x: 0.17278737, y: 0.17278737}
   m_Direction: 0
 --- !u!95 &374596334712454517
 Animator:
@@ -242,7 +243,23 @@ MonoBehaviour:
   jumpForce: 3
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  groundCheckSize: {x: 0.12, y: 0.04}
   groundCheck: {fileID: 3956779838825681957}
-  groundCheckRadius: 0.2
   rb: {fileID: 7314885439696403870}
+--- !u!114 &2959738912149020647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010957060227298783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da2c4cf16972b545a8f16c9ee077e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  spawnPoint: {fileID: 0}

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("GroundCheck Parameters")]
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask platformLayer;
     [SerializeField] Vector2 groundCheckSize;
     [SerializeField] Transform groundCheck;
 
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     InputSystemActions inputActions;
 
 
-
+    private MovingPlatform activePlatform;
     public bool IsGrounded { get; private set; }
     public Vector2 PlayerVelocity => rb.linearVelocity;
 
@@ -70,6 +71,13 @@ public class PlayerMovement : MonoBehaviour
     {
         GroundCheck();
         Move();
+
+        if (activePlatform != null)
+        {
+            Debug.Log(activePlatform.Delta);
+            rb.position += activePlatform.Delta;
+
+        }
     }
 
     private void Move()
@@ -87,7 +95,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck()
     {
-        IsGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f, groundLayer);
+        Collider2D hit = Physics2D.OverlapBox(
+            groundCheck.position, groundCheckSize, 0f, groundLayer | platformLayer);
+
+        IsGrounded = hit != null;
+        activePlatform = hit != null ? hit.GetComponent<MovingPlatform>() : null;
+        //if (hit != null)
+        //{
+        //    // Yeni bir platforma bastık — güncelle
+        //    MovingPlatform platform = hit.GetComponent<MovingPlatform>();
+        //    if (platform != null)
+        //        activePlatform = platform;
+        //    else
+        //        activePlatform = null; // normal zemine bastık, platform bağlantısını kes
+        //}
+
     }
     void OnDrawGizmos()
     {
